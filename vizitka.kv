@@ -1,0 +1,128 @@
+#:kivy 2.0
+
+<RoundButton@Button>:
+    background_color: 0, 0, 0, 0
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: self.background_color if self.state == 'normal' else (0.2, 0.3, 0.6, 1)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [12]
+
+<Vizitka>:
+    orientation: 'vertical'
+    padding: [30, 40, 30, 40]
+    spacing: 16
+
+    canvas.before:
+        Color:
+            rgba: 0.08, 0.08, 0.15, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    # --- Аватар ---
+    AsyncImage:
+        source: 'avatar.png'
+        size_hint: (None, None)
+        size: (140, 140)
+        pos_hint: {'center_x': 0.5}
+        allow_stretch: True
+        keep_ratio: True
+
+    # --- Имя ---
+    Label:
+        text: 'Алексей Иванов'
+        font_size: '26sp'
+        bold: True
+        color: 1, 1, 1, 1
+        size_hint_y: None
+        height: self.texture_size[1]
+        halign: 'center'
+        text_size: self.width, None
+
+    # --- Описание ---
+    Label:
+        text: 'Ученик • Python разработчик'
+        font_size: '16sp'
+        color: 0.6, 0.7, 0.9, 1
+        size_hint_y: None
+        height: self.texture_size[1]
+        halign: 'center'
+        text_size: self.width, None
+
+    # --- Разделитель ---
+    BoxLayout:
+        size_hint_y: None
+        height: 1
+        canvas.before:
+            Color:
+                rgba: 0.3, 0.3, 0.5, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    # --- Инфо блок ---
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        size_hint_y: None
+        height: self.minimum_height
+
+        Label:
+            text: '🏙  Москва, Россия'
+            font_size: '15sp'
+            color: 0.8, 0.8, 0.8, 1
+            size_hint_y: None
+            height: 30
+            halign: 'left'
+            text_size: self.width, None
+
+        Label:
+            text: '🎮  Roblox Studio • Python • Kivy'
+            font_size: '15sp'
+            color: 0.8, 0.8, 0.8, 1
+            size_hint_y: None
+            height: 30
+            halign: 'left'
+            text_size: self.width, None
+
+        Label:
+            text: '✉  alex@example.com'
+            font_size: '15sp'
+            color: 0.8, 0.8, 0.8, 1
+            size_hint_y: None
+            height: 30
+            halign: 'left'
+            text_size: self.width, None
+
+    Widget:  # пружина - толкает кнопки вниз
+        size_hint_y: 1
+
+    # --- Кнопки ---
+    BoxLayout:
+        spacing: 12
+        size_hint_y: None
+        height: 52
+
+        RoundButton:
+            text: '💬 Telegram'
+            font_size: '15sp'
+            background_color: 0.17, 0.49, 0.82, 1
+            color: 1, 1, 1, 1
+
+        RoundButton:
+            text: '🎮 Roblox'
+            font_size: '15sp'
+            background_color: 0.85, 0.26, 0.12, 1
+            color: 1, 1, 1, 1
+
+    RoundButton:
+        text: '📋 Скопировать контакт'
+        font_size: '15sp'
+        size_hint_y: None
+        height: 48
+        background_color: 0.18, 0.18, 0.32, 1
+        color: 0.7, 0.8, 1, 1
